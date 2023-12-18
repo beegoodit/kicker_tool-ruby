@@ -1,0 +1,9 @@
+%ul#your-tabs.nav.nav-tabs
+  %li.nav-item{role: "presentation"}
+    %button#matches-tab.nav-link.active{"aria-controls" => "contact", "aria-selected" => "false", "data-target" => "#matches", "data-toggle" => "tab", role: "tab", type: "button"}
+      %i.fa.fa-user
+      = KickerTool::Match.model_name.human(count: :other)
+
+#your-tab-content.tab-content
+  #matches.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", role: "tabpanel"}
+    = turbo_frame_tag dom_class(KickerTool::Match), src: export_qualifying_round_matches_path(@export.id, @qualifying.id, @resource.id)

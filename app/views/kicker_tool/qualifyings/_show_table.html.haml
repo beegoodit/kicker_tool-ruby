@@ -1,0 +1,9 @@
+= table.row :id
+= table.row :hash
+= table.row :name
+= table.row :participants do |r|
+  - r.participants.size
+= table.row :rounds do |r|
+  - r.rounds.size
+= table.row :standings do |r|
+  - r.standings.size

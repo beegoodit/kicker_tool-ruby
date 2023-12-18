@@ -1,0 +1,7 @@
+= table.column :id
+= table.column :group_id
+= table.column :hash
+= table.column :matches do |r|
+  - r.matches.size
+= table.column :name
+= table.column :round_id

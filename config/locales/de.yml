@@ -1,0 +1,12 @@
+de:
+  activerecord:
+    models:
+    attributes:
+      shared: &shared
+        id: ID
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+  classes:
+    kicker_tool/engine: Kicker Tool
+  routes:
+    kicker-tool-engine: kicker-tool

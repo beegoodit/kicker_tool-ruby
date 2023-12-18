@@ -1,0 +1,114 @@
+%h3= KickerTool::Tournament.model_name.human
+
+= resource_table(resource: @resource.tournament) do |table|
+  = table.row :_id
+  = table.row :created_at
+  = table.row :eliminations
+  = table.row :mode
+  = table.row :name
+  = table.row :name_type
+  = table.row :options
+  = table.row :sport
+  = table.row :stage
+  = table.row :updated_at
+  = table.row :version
+
+- @resource.tournament.qualifying.each do |q|
+  %h3= q._id
+  
+  = resource_table(resource: q) do |table|
+    = table.row :_id
+    = table.row :hash
+    = table.row :name
+  
+  %h4= KickerTool::Participant.model_name.human(count: :other)
+
+  = collection_table(collection: q.participants) do |table|
+    = table.column :_id
+    = table.column :avatar
+    = table.column :deactivated
+    = table.column :external
+    = table.column :guest
+    = table.column :hash
+    = table.column :marked_for_removal
+    = table.column :name
+    = table.column :players
+    = table.column :removed
+
+  %h4= KickerTool::Round.model_name.human(count: :other)
+
+  - q.rounds.each do |r|
+    %h5= r.name
+    = resource_table(resource: r) do |table|
+      = table.row :_id
+      = table.row :group_id
+      = table.row :hash
+      = table.row :name
+      = table.row :round_id
+
+    %h6= KickerTool::Match.model_name.human(count: :other)
+
+    = collection_table(collection: r.matches) do |table|
+      = table.column :_id
+      = table.column :deactivated
+      = table.column :disciplines
+      = table.column :elimination_match
+      = table.column :forced_tables
+      = table.column :group_id
+      = table.column :hash
+      = table.column :result
+      = table.column :round_id
+      = table.column :skipped
+      = table.column :tables
+      = table.column :team1
+      = table.column :team1bye
+      = table.column :team2
+      = table.column :team2bye
+      = table.column :time_end
+      = table.column :time_start
+      = table.column :valid
+  
+  %h4= KickerTool::Standing.model_name.human(count: :other)
+
+  - q.standings.each do |s|
+    %h5= s.name
+
+    = resource_table(resource: s) do |table|
+      = table.row :_id
+      = table.row :deactivated
+      = table.row :group_id
+      = table.row :guest
+      = table.row :hash
+      = table.row :marked_for_removal
+      = table.row :name
+      = table.row :removed
+      = table.row :stats
+
+    = resource_table(resource: s.stats) do |table|
+      = table.row :bh1
+      = table.row :bh2
+      = table.row :corrected_points_per_game
+      = table.row :dis_diff
+      = table.row :dis_draw
+      = table.row :dis_lost
+      = table.row :dis_won
+      = table.row :draws
+      = table.row :final_result
+      = table.row :goal_diff
+      = table.row :goals
+      = table.row :goals_in
+      = table.row :last_round
+      = table.row :lives
+      = table.row :lost
+      = table.row :matches
+      = table.row :place
+      = table.row :points
+      = table.row :points_per_game
+      = table.row :sb
+      = table.row :sets_diff
+      = table.row :sets_lost
+      = table.row :sets_won
+      = table.row :w_l
+      = table.row :won
+
+  %hr

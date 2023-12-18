@@ -1,0 +1,21 @@
+%ul#your-tabs.nav.nav-tabs
+  %li.nav-item{role: "presentation"}
+    %button#contact-tab.nav-link.active{"aria-controls" => "contact", "aria-selected" => "false", "data-target" => "#participants", "data-toggle" => "tab", role: "tab", type: "button"}
+      %i.fa.fa-user
+      = KickerTool::Participant.model_name.human(count: :other)
+  %li.nav-item{role: "presentation"}
+    %button#contact-tab.nav-link{"aria-controls" => "contact", "aria-selected" => "false", "data-target" => "#rounds", "data-toggle" => "tab", role: "tab", type: "button"}
+      %i.fa.fa-dice-six
+      = KickerTool::Round.model_name.human(count: :other)
+  %li.nav-item{role: "presentation"}
+    %button#contact-tab.nav-link{"aria-controls" => "contact", "aria-selected" => "false", "data-target" => "#standings", "data-toggle" => "tab", role: "tab", type: "button"}
+      %i.fa.fa-star
+      = KickerTool::Standing.model_name.human(count: :other)
+
+#your-tab-content.tab-content
+  #participants.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", role: "tabpanel"}
+    = turbo_frame_tag dom_class(KickerTool::Participant), src: export_qualifying_participants_path(@export.id, @resource.id)
+  #rounds.tab-pane.fade{"aria-labelledby" => "home-tab", role: "tabpanel"}
+    = turbo_frame_tag dom_class(KickerTool::Round), src: export_qualifying_rounds_path(@export.id, @resource.id)
+  #standings.tab-pane.fade{"aria-labelledby" => "home-tab", role: "tabpanel"}
+    = turbo_frame_tag dom_class(KickerTool::Standing), src: export_qualifying_standings_path(@export.id, @resource.id)

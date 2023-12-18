@@ -1,0 +1,5 @@
+
+
+  localized do
+    mount KickerTool::Engine, at: '/backend/kicker-tool-engine'
+  end

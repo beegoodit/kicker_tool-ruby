@@ -1,0 +1,20 @@
+.row
+  .col-12
+    %h1= administrador_helper(self).label_for(@resource)
+
+.row
+  .col-12
+    .before-show-table= render 'before_show_table', locals: { resource: @resource }
+.row
+  .col-12
+    = turbo_frame_tag dom_class(resource_class) do
+      = resource_table(resource: @resource) do |table|
+        = render 'show_table', table: table
+
+.row
+  .col-12
+    .after-show-table= render 'after_show_table', locals: { resource: @resource }
+
+.row
+  .show-actions.col-12.d-flex
+    = render partial: 'show_actions', locals: { resource: @resource }

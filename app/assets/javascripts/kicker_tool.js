@@ -1,0 +1,1 @@
+//= require kicker_tool/application

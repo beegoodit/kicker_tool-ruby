@@ -1,0 +1,9 @@
+%ul#your-tabs.nav.nav-tabs
+  %li.nav-item{role: "presentation"}
+    %button#stats-tab.nav-link.active{"aria-controls" => "contact", "aria-selected" => "false", "data-target" => "#stats", "data-toggle" => "tab", role: "tab", type: "button"}
+      %i.fa.fa-user
+      = KickerTool::Stats.model_name.human(count: :other)
+
+#your-tab-content.tab-content
+  #stats.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", role: "tabpanel"}
+    = turbo_frame_tag dom_class(KickerTool::Stats), src: export_qualifying_standing_stats_path(@export.id, @qualifying.id, @resource.id)
