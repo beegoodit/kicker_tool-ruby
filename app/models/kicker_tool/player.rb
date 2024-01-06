@@ -1,14 +1,9 @@
 module KickerTool
-  class Player < ApplicationModel
-    attribute :_id
-    attribute :avatar
-    attribute :deactivated
-    attribute :external
-    attribute :guest
-    attribute :hash
-    attribute :marked_for_removal
-    attribute :name
-    attribute :players
-    attribute :removed
+  class Player < ApplicationRecord
+    belongs_to :team
+
+    def players_attributes=(value)
+      raise "players is not supported" unless value == []
+    end
   end
 end

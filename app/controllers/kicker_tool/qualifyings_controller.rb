@@ -8,22 +8,20 @@ module KickerTool
       super - %i[new create edit update destroy]
     end
 
+    helper_method :export
+
     private
 
-    def resource_path(resource)
-      resource_router.send(:url_for, {action: :show, id: resource.id, only_path: true})
-    end
-
     def export
-      @export ||= KickerTool::Export.find(params[:export_id])
+      @export ||= params.has_key?(:export_id) ? KickerTool::Export.find(params[:export_id]) : @resource.tournament.export
     end
 
     def load_collection
-      @collection = export.tournament.qualifying
+      @collection = params.has_key?(:export_id) ? export.tournament.qualifyings : super
     end
 
     def load_resource
-      @resource = export.tournament.qualifying.select { |q| q.id == params[:id] }.first
+      @resource = params.has_key?(:export_id) ? export.tournament.qualifyings.find(params[:id]) : super
     end
   end
 end

@@ -19,7 +19,7 @@ module KickerTool
     end
 
     def qualifying
-      @qualifying ||= export.tournament.qualifying.select { |q| q.id == params[:qualifying_id] }.first
+      @qualifying ||= export.tournament.qualifyings.find(params[:qualifying_id])
     end
 
     def load_collection
@@ -27,7 +27,7 @@ module KickerTool
     end
 
     def load_resource
-      @resource = qualifying.rounds.select { |p| p.id == params[:id] }.first
+      @resource = qualifying.rounds.find(params[:id])
     end
   end
 end

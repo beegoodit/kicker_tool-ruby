@@ -1,22 +1,27 @@
 module KickerTool
-  class Qualifying < ApplicationModel
-    attribute :_id
-    attribute :hash
-    attribute :name
-    attribute :participants
-    attribute :rounds
-    attribute :standings
+  class Qualifying < ApplicationRecord
+    belongs_to :tournament
+    has_many :participants, dependent: :destroy
+    accepts_nested_attributes_for :participants
+    has_many :rounds, dependent: :destroy
+    accepts_nested_attributes_for :rounds
+    has_many :standings, dependent: :destroy
+    accepts_nested_attributes_for :standings
 
-    def participants=(value)
-      super(value&.map { |v| Participant.new(v) })
+    def human
+      [tournament&.name, _hash].join(" - ")
     end
 
-    def rounds=(value)
-      super(value&.map { |v| Round.new(v) })
+    def participants_count
+      participants.count
     end
 
-    def standings=(value)
-      super(value&.map { |v| Standing.new(v) })
+    def rounds_count
+      rounds.count
+    end
+
+    def standings_count
+      standings.count
     end
   end
 end

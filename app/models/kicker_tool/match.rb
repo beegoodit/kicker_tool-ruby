@@ -1,34 +1,13 @@
 module KickerTool
-  class Match < ApplicationModel
-    attribute :_id
-    attribute :deactivated
-    attribute :disciplines
-    attribute :elimination_match
-    attribute :forced_tables
-    attribute :group_id
-    attribute :hash
-    attribute :result
-    attribute :round_id
-    attribute :skipped
-    attribute :tables
-    attribute :team1
-    attribute :team1bye
-    attribute :team2
-    attribute :team2bye
-    attribute :time_end
-    attribute :time_start
-    attribute :valid
+  class Match < ApplicationRecord
+    belongs_to :round
+    has_many :disciplines, dependent: :destroy
+    accepts_nested_attributes_for :disciplines
+    has_one :team1, dependent: :destroy, class_name: "KickerTool::Team"
+    accepts_nested_attributes_for :team1
+    has_one :team2, dependent: :destroy, class_name: "KickerTool::Team"
+    accepts_nested_attributes_for :team2
 
-    def team1=(value)
-      super(Team.new(value))
-    end
-
-    def team2=(value)
-      super(Team.new(value))
-    end
-
-    def disciplines=(value)
-      super(value&.map { |v| Discipline.new(v) })
-    end
+    serialize :result, Array
   end
 end

@@ -1,17 +1,8 @@
 module KickerTool
-  class Standing < ApplicationModel
-    attribute :_id
-    attribute :deactivated
-    attribute :group_id
-    attribute :guest
-    attribute :hash
-    attribute :marked_for_removal
-    attribute :name
-    attribute :removed
-    attribute :stats
+  class Standing < ApplicationRecord
+    belongs_to :qualifying
 
-    def stats=(value)
-      super(Stats.new(value))
-    end
+    has_one :stats, dependent: :destroy
+    accepts_nested_attributes_for :stats
   end
 end

@@ -1,5 +1,5 @@
 module KickerTool
-  class StatsController < Cmor::Core::Backend::ResourceController::Base
+  class StatsController < Cmor::Core::Backend::ResourcesController::Base
     def self.resource_class
       KickerTool::Stats
     end
@@ -19,11 +19,11 @@ module KickerTool
     end
 
     def qualifying
-      @qualifying ||= export.tournament.qualifying.select { |q| q.id == params[:qualifying_id] }.first
+      @qualifying ||= export.tournament.qualifyings.find(params[:qualifying_id])
     end
 
     def standing
-      @standing ||= qualifying.standings.select { |s| s.id == params[:standing_id] }.first
+      @standing ||= qualifying.standings.find(params[:standing_id])
     end
 
     def load_resource

@@ -13,12 +13,12 @@
   = table.row :updated_at
   = table.row :version
 
-- @resource.tournament.qualifying.each do |q|
+- @resource.tournament.qualifyings.each do |q|
   %h3= q._id
   
   = resource_table(resource: q) do |table|
     = table.row :_id
-    = table.row :hash
+    = table.row :_hash
     = table.row :name
   
   %h4= KickerTool::Participant.model_name.human(count: :other)
@@ -29,7 +29,7 @@
     = table.column :deactivated
     = table.column :external
     = table.column :guest
-    = table.column :hash
+    = table.column :_hash
     = table.column :marked_for_removal
     = table.column :name
     = table.column :players
@@ -41,10 +41,10 @@
     %h5= r.name
     = resource_table(resource: r) do |table|
       = table.row :_id
-      = table.row :group_id
-      = table.row :hash
+      = table.row :_group_id
+      = table.row :_hash
       = table.row :name
-      = table.row :round_id
+      = table.row :_round_id
 
     %h6= KickerTool::Match.model_name.human(count: :other)
 
@@ -54,10 +54,10 @@
       = table.column :disciplines
       = table.column :elimination_match
       = table.column :forced_tables
-      = table.column :group_id
-      = table.column :hash
+      = table.column :_group_id
+      = table.column :_hash
       = table.column :result
-      = table.column :round_id
+      = table.column :_round_id
       = table.column :skipped
       = table.column :tables
       = table.column :team1
@@ -66,7 +66,7 @@
       = table.column :team2bye
       = table.column :time_end
       = table.column :time_start
-      = table.column :valid
+      = table.column :_valid
   
   %h4= KickerTool::Standing.model_name.human(count: :other)
 
@@ -76,9 +76,9 @@
     = resource_table(resource: s) do |table|
       = table.row :_id
       = table.row :deactivated
-      = table.row :group_id
+      = table.row :_group_id
       = table.row :guest
-      = table.row :hash
+      = table.row :_hash
       = table.row :marked_for_removal
       = table.row :name
       = table.row :removed

@@ -23,9 +23,26 @@ module KickerTool
 
     @values = {}
 
-    define_option :resources_controllers, default: -> { [KickerTool::ExportsController] }
+    define_option :resources_controllers, default: -> {
+                                                     [
+                                                       KickerTool::DisciplinesController,
+                                                       KickerTool::ExportsController,
+                                                       KickerTool::MatchesController,
+                                                       KickerTool::OptionsController,
+                                                       KickerTool::OptionsDisciplinesController,
+                                                       KickerTool::ParticipantsController,
+                                                       KickerTool::PlayersController,
+                                                       KickerTool::QualifyingsController,
+                                                       KickerTool::RoundsController,
+                                                       KickerTool::SetsController,
+                                                       KickerTool::StandingsController,
+                                                       KickerTool::StatsController,
+                                                       KickerTool::TeamsController,
+                                                       KickerTool::TournamentsController
+                                                     ]
+                                                   }
     define_option :resource_controllers, default: -> { [] }
-    define_option :service_controllers, default: -> { [] }
+    define_option :service_controllers, default: -> { [KickerTool::ProcessExportAssetServicesController] }
     define_option :sidebar_controllers, default: -> { [] }
   end
 end

@@ -1,14 +1,8 @@
 module KickerTool
-  class Round < ApplicationModel
-    attribute :_id
-    attribute :group_id
-    attribute :hash
-    attribute :matches
-    attribute :name
-    attribute :round_id
+  class Round < ApplicationRecord
+    belongs_to :qualifying
 
-    def matches=(value)
-      super(value&.map { |v| Match.new(v) })
-    end
+    has_many :matches, dependent: :destroy
+    accepts_nested_attributes_for :matches
   end
 end

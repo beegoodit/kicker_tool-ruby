@@ -8,12 +8,38 @@ KickerTool.configure do |config|
   # Set the resources, that will be shown in the backend menu.
   #
   # Default: config.resources_controllers = -> {[
-  #            KickerTool::ExportsController
+  #            KickerTool::DisciplinesController,
+  #            KickerTool::ExportsController,
+  #            KickerTool::MatchesController,
+  #            KickerTool::OptionsController,
+  #            KickerTool::OptionsDisciplinesController,
+  #            KickerTool::ParticipantsController,
+  #            KickerTool::PlayersController,
+  #            KickerTool::QualifyingsController,
+  #            KickerTool::RoundsController,
+  #            KickerTool::SetsController,
+  #            KickerTool::StandingsController,
+  #            KickerTool::StatsController,
+  #            KickerTool::TeamsController,
+  #            KickerTool::TournamentsController
   #          ]}
   #
   config.resources_controllers = -> {
     [
-      KickerTool::ExportsController
+      KickerTool::DisciplinesController,
+      KickerTool::ExportsController,
+      KickerTool::MatchesController,
+      KickerTool::OptionsController,
+      KickerTool::OptionsDisciplinesController,
+      KickerTool::ParticipantsController,
+      KickerTool::PlayersController,
+      KickerTool::QualifyingsController,
+      KickerTool::RoundsController,
+      KickerTool::SetsController,
+      KickerTool::StandingsController,
+      KickerTool::StatsController,
+      KickerTool::TeamsController,
+      KickerTool::TournamentsController
     ]
   }
 
@@ -29,10 +55,13 @@ KickerTool.configure do |config|
   # Set the services, that will be shown in the backend menu.
   #
   # Default: config.service_controllers = -> {[
+  #            KickerTool::ProcessExportAssetServicesController
   #          ]}
   #
   config.service_controllers = -> {
-    []
+    [
+      KickerTool::ProcessExportAssetServicesController
+    ]
   }
 
   # Set the sidebars, that will be shown in the backend menu.

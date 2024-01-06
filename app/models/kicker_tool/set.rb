@@ -1,6 +1,7 @@
 module KickerTool
-  class Set < ApplicationModel
-    attribute :_id
-    attribute :scores
+  class Set < ApplicationRecord
+    belongs_to :discipline
+
+    serialize :scores, Array
   end
 end

@@ -41,7 +41,7 @@ GIT
       railties
 
 PATH
-  remote: ../../../../gems/administrador
+  remote: ../administrador
   specs:
     administrador (0.0.32.pre)
       bootstrap4-kaminari-views
